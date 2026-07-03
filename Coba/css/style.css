@@ -24,8 +24,8 @@ body {
 .brand {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  max-width: 1200px;             
+  gap: 12px;
+  max-width: 1200px;              
   width: 100%;
   margin: 0 auto;                
   padding: 15px 30px;            
@@ -36,6 +36,13 @@ body {
   height: 45px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+.brand-title {
+  font-size: 1.8rem;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .nav-menu {
@@ -53,42 +60,7 @@ body {
   max-width: 1200px;   
   width: 100%;
   margin: 0 auto;      
-  padding: 5px 30px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.brand-img {
-  width: 45px;
-  height: 45px;
-  margin-left: 30px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.brand-title {
-  font-size: 1.8rem;
-  color: white;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.nav-menu {
-  background-color: #3F72AF;
-  display: flex;
-  align-items: center;
-  gap: 30px; 
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  border-bottom: 4px solid #adc5f1;
-  width: auto;
-  min-width: 320px;
-  justify-content: left;
+  padding: 10px 30px;
 }
 
 .nav-link {
@@ -96,11 +68,11 @@ body {
   color: #F9F7F7;
   font-weight: 500;
   font-size: 1rem;
-  transition: color 0.3s ease;
+  transition: transform 023s ease;
 }
 
 .nav-link:hover {
-  color: #3182ce;
+  transform: scale(1.1);
 }
 
 .home-logo {
@@ -146,11 +118,11 @@ body {
 }
 
 .home-logo:hover .house-roof {
-  border-bottom-color: #3182ce;
+  border-bottom-color: #e0f2fe;
 }
 
 .home-logo:hover .house-body {
-  background-color: #3182ce;
+  background-color: #e0f2fe;
 }
 
 footer {
@@ -180,7 +152,7 @@ footer {
   font-size: 1.2rem;
   margin-bottom: 20px;
   color: #F9F7F7;
-  border-bottom: 2px solid hsl(212, 77%, 71%); 
+  border-bottom: 2px solid #3F72AF; 
   padding-bottom: 8px;
 }
 
@@ -188,23 +160,13 @@ footer {
   font-size: 0.95rem;
   color: #adc5f1;
   line-height: 1.6;
-  text-indent: 0;
-  text-align: left;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
 }
 
 .footer-links a {
   color: #adc5f1;
   text-decoration: none;
   font-size: 0.95rem;
+  line-height: 2;
   transition: color 0.3s ease;
 }
 
@@ -225,33 +187,25 @@ footer {
   justify-content: center;
   width: 40px;
   height: 40px;
-  color: #112D4E;           
   background-color: #F9F7F7; 
   border-radius: 50%;       
-  font-size: 1.2rem;        
-  text-decoration: none;
   transition: all 0.3s ease; 
 }
 
 .social-icon.instagram:hover {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-  color: white;
   transform: translateY(-5px); 
 }
 
 .social-icon.facebook:hover {
   background-color: #1877F2; 
-  color: white;
   transform: translateY(-5px);
 }
 
 .social-icon.youtube:hover {
   background-color: #FF0000; 
-  color: white;
   transform: translateY(-5px);
 }
-
-
 
 .footer-bottom {
   background-color: #0b1f36;
@@ -264,6 +218,4 @@ footer {
 .footer-bottom p {
   font-size: 0.85rem;
   color: #7f9ec7;
-  text-indent: 0;
-  text-align: center;
 }
