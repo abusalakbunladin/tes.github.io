@@ -5,6 +5,438 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1140px;
+            height: 450px;    
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .slider-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .text-box-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(17, 45, 78, 0.95) 60%); 
+            color: #F9F7F7;
+            padding: 40px 30px 25px 30px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .text-box-bottom h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .text-box-bottom p {
+            font-size: 1rem;
+            color: #adc5f1;
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        .business-leads-section {
+            max-width: 1140px;
+            width: 100%;
+            padding: 20px 20px 40px 20px;
+            text-align: left;
+        }
+
+        .business-leads-title {
+            font-size: 2.2rem;
+            color: #112D4E;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .business-leads-subtitle {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .lead-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .lead-badge span {
+            font-size: 1.1rem;
+        }
+
+        .desc-text {
+            max-width: 1140px;
+            width: 100%;
+            padding: 0 20px;
+            text-indent: 30px;
+            text-align: justify;
+        }
+
+        .pricing-section {
+            max-width: 1140px;
+            width: 100%;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .promo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .pricing-title {
+            font-size: 2.2rem;
+            color: #112D4E;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .pricing-subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 45px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-items: stretch;
+            margin-bottom: 30px;
+        }
+
+        .price-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 35px 25px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .price-card.featured {
+            background-color: #0f2846;
+            color: #ffffff;
+            border: 2px solid #3F72AF;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(17, 45, 78, 0.15);
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #22c55e;
+            color: white;
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #0284c7;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .price-card.featured .card-header-title {
+            color: #38bdf8;
+        }
+
+        .card-header-sub {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 20px;
+        }
+        .price-card.featured .card-header-sub {
+            color: #e2e8f0;
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        .current-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #112D4E;
+            margin: 2px 0 12px 0;
+        }
+        .price-card.featured .current-price {
+            color: #ffffff;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background-color: #dcfce7;
+            color: #15803d;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            align-self: flex-start;
+        }
+        .price-card.featured .discount-badge {
+            background-color: #166534;
+            color: #4ade80;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #475569;
+        }
+        .price-card.featured .features-list li {
+            color: #cbd5e1;
+        }
+
+        .features-list li.highlight-text {
+            font-weight: 700;
+            color: #112D4E;
+        }
+        .price-card.featured .features-list li.highlight-text {
+            color: #f8fafc;
+        }
+
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: auto;
+            font-size: 0.95rem;
+            border: 2px solid #112D4E;
+            color: #112D4E;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .pricing-btn:hover {
+            background-color: #112D4E;
+            color: white;
+        }
+
+        .price-card.featured .pricing-btn {
+            background-color: #22c55e;
+            border-color: #22c55e;
+            color: white;
+        }
+        .price-card.featured .pricing-btn:hover {
+            background-color: #16a34a;
+            border-color: #16a34a;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Layouting */
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .price-card.featured {
+                transform: scale(1);
+            }
+            .pricing-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slider-container { height: 300px; }
+            .text-box-bottom h3 { font-size: 1.2rem; }
+            .text-box-bottom p { font-size: 0.85rem; }
+            .business-leads-title { font-size: 1.7rem; }
+            .business-leads-subtitle { font-size: 0.95rem; }
+            .lead-badge { font-size: 0.85rem; padding: 8px 16px; }
+        }
+
+        .leads-section {
+            max-width: 1140px;
+            width: 100%;
+            margin: 60px auto 20px auto;
+            padding: 0 20px;
+            text-indent: 0; 
+            text-align: left; 
+        }
+
+        .leads-title {
+            font-size: 2rem;
+            color: #112D4E; 
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .leads-subtitle {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .lead-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); 
+            border: 1px solid #112D4E;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .lead-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-number {
+            width: 35px;
+            height: 35px;
+            background-color: #e0f2fe; 
+            color: #0284c7; 
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+        }
+
+        .lead-card h3 {
+            font-size: 1.15rem;
+            color: #112D4E;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .lead-card p {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.6;
+            text-indent: 0; 
+            text-align: left;
+        }
+
+        @media (max-width: 1024px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .leads-title { font-size: 1.6rem; }
+        }
+    </style>
 </head>
 <body>
     <header class="navbar">
@@ -27,28 +459,159 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra ex eu nisi tincidunt bibendum. Vivamus quis lectus tellus. Suspendisse at mi tristique, eleifend odio sed, facilisis felis. Maecenas sollicitudin sapien ante, et accumsan arcu interdum eu. Donec feugiat feugiat nisi non maximus. Nulla volutpat facilisis posuere. Ut convallis interdum diam interdum imperdiet. Maecenas sit amet aliquet arcu.</P>
-            <br>
-        <P>Nulla sagittis arcu magna, vel malesuada nunc suscipit sed. Nam aliquam dui         vitae tellus luctus, feugiat vehicula neque imperdiet. Suspendisse sagittis et      est id pretium. Orci varius natoque penatibus et magnis dis parturient montes,      nascetur ridiculus mus. Curabitur faucibus, nisi ac mollis fringilla, tortor   neque ultrices tortor, vitae aliquet diam turpis vitae enim. Quisque magna       diam, interdum id molestie vitae, efficitur in metus. Nam feugiat consectetur       nisl, fermentum hendrerit leo facilisis ac. Cras gravida viverra dolor, ut    sagittis lacus volutpat eu. Morbi varius iaculis euismod. Sed scelerisque     placerat nisl in condimentum. Morbi et tortor et lacus tempor tempor. Nulla      ultricies aliquam erat ac blandit. Nulla facilisi. Fusce quis neque a dolor       pretium viverra in a nulla. Etiam viverra, nunc sit amet consequat vehicula,       augue nisl fermentum nulla, non convallis urna quam non nulla. In sed interdum      eros.</P>
-            <br>
-        <P>Aenean at dictum erat, posuere consequat mauris. Morbi mattis, libero sit amet      tincidunt laoreet, arcu dui efficitur odio, sed rhoncus erat urna vel augue.        Nullam id felis pulvinar, aliquam elit vitae, hendrerit augue. Nullam rhoncus      mi quis viverra posuere. Proin volutpat magna orci, pretium convallis orci     tincidunt sit amet. Vivamus auctor consectetur risus, eu pharetra nisi.      Praesent tortor augue, convallis in commodo sit amet, condimentum sit amet        massa. Vestibulum venenatis lacinia urna, sit amet molestie magna consequat        nec. Nullam interdum suscipit enim eget volutpat. Phasellus sit amet       consectetur justo. Phasellus egestas, est at venenatis accumsan, nibh odio         interdum diam, quis ornare dolor nunc sed velit. In non tortor a elit       ullamcorper sagittis sit amet et urna. Vivamus molestie pellentesque nunc,      quis vulputate velit accumsan quis. Nunc non pharetra velit.</P>
-            <br>
-        <P>Aliquam sapien odio, posuere nec viverra sit amet, congue ac velit. Cras        vehicula tincidunt arcu, vitae tempor sapien tempus id. Phasellus rutrum    porttitor turpis, eget egestas enim lacinia sed. Proin tristique felis a     rhoncus euismod. Praesent pretium turpis ut finibus varius. Integer lacinia    urna a odio gravida aliquam. Suspendisse convallis ac massa in sodales.   Praesent lacinia molestie purus eget finibus. Duis vehicula dignissim leo,       bibendum semper sapien lacinia nec. Donec fermentum tempor enim, nec efficitur      magna consectetur lobortis. Pellentesque a posuere velit, at laoreet magna.       Donec ut turpis ac libero volutpat elementum at vitae arcu.</P>
-            <br>
-        <P>Etiam ultricies euismod tellus, nec rhoncus dui egestas in. Sed ligula velit,       posuere sit amet viverra sit amet, volutpat et arcu. Donec bibendum sapien sit      amet nunc placerat interdum. Aenean ex mauris, iaculis eget aliquam sed,      bibendum eget ante. Morbi quis est scelerisque, cursus metus pharetra, dictum      sapien. Phasellus eleifend hendrerit sem vehicula rutrum. Aliquam interdum   dolor nibh, ac interdum purus cursus sit amet. Maecenas auctor nulla non lorem       consectetur, eget varius eros auctor. Proin sagittis at orci quis euismod.      Quisque vitae hendrerit urna. Quisque lectus sapien, lacinia ut rhoncus in,       tristique et magna. Maecenas interdum blandit dignissim.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra ex eu nisi tincidunt bibendum. Vivamus quis lectus tellus. Suspendisse at mi tristique, eleifend odio sed, facilisis felis. Maecenas sollicitudin sapien ante, et accumsan arcu interdum eu. Donec feugiat feugiat nisi non maximus. Nulla volutpat facilisis posuere. Ut convallis interdum diam interdum imperdiet. Maecenas sit amet aliquet arcu.</P>
-            <br>
-        <P>Nulla sagittis arcu magna, vel malesuada nunc suscipit sed. Nam aliquam dui         vitae tellus luctus, feugiat vehicula neque imperdiet. Suspendisse sagittis et      est id pretium. Orci varius natoque penatibus et magnis dis parturient montes,      nascetur ridiculus mus. Curabitur faucibus, nisi ac mollis fringilla, tortor   neque ultrices tortor, vitae aliquet diam turpis vitae enim. Quisque magna       diam, interdum id molestie vitae, efficitur in metus. Nam feugiat consectetur       nisl, fermentum hendrerit leo facilisis ac. Cras gravida viverra dolor, ut    sagittis lacus volutpat eu. Morbi varius iaculis euismod. Sed scelerisque     placerat nisl in condimentum. Morbi et tortor et lacus tempor tempor. Nulla      ultricies aliquam erat ac blandit. Nulla facilisi. Fusce quis neque a dolor       pretium viverra in a nulla. Etiam viverra, nunc sit amet consequat vehicula,       augue nisl fermentum nulla, non convallis urna quam non nulla. In sed interdum      eros.</P>
-            <br>
-        <P>Aenean at dictum erat, posuere consequat mauris. Morbi mattis, libero sit amet      tincidunt laoreet, arcu dui efficitur odio, sed rhoncus erat urna vel augue.        Nullam id felis pulvinar, aliquam elit vitae, hendrerit augue. Nullam rhoncus      mi quis viverra posuere. Proin volutpat magna orci, pretium convallis orci     tincidunt sit amet. Vivamus auctor consectetur risus, eu pharetra nisi.      Praesent tortor augue, convallis in commodo sit amet, condimentum sit amet        massa. Vestibulum venenatis lacinia urna, sit amet molestie magna consequat        nec. Nullam interdum suscipit enim eget volutpat. Phasellus sit amet       consectetur justo. Phasellus egestas, est at venenatis accumsan, nibh odio         interdum diam, quis ornare dolor nunc sed velit. In non tortor a elit       ullamcorper sagittis sit amet et urna. Vivamus molestie pellentesque nunc,      quis vulputate velit accumsan quis. Nunc non pharetra velit.</P>
-            <br>
-        <P>Aliquam sapien odio, posuere nec viverra sit amet, congue ac velit. Cras        vehicula tincidunt arcu, vitae tempor sapien tempus id. Phasellus rutrum    porttitor turpis, eget egestas enim lacinia sed. Proin tristique felis a     rhoncus euismod. Praesent pretium turpis ut finibus varius. Integer lacinia    urna a odio gravida aliquam. Suspendisse convallis ac massa in sodales.   Praesent lacinia molestie purus eget finibus. Duis vehicula dignissim leo,       bibendum semper sapien lacinia nec. Donec fermentum tempor enim, nec efficitur      magna consectetur lobortis. Pellentesque a posuere velit, at laoreet magna.       Donec ut turpis ac libero volutpat elementum at vitae arcu.</P>
-            <br>
-        <P>Etiam ultricies euismod tellus, nec rhoncus dui egestas in. Sed ligula velit,       posuere sit amet viverra sit amet, volutpat et arcu. Donec bibendum sapien sit      amet nunc placerat interdum. Aenean ex mauris, iaculis eget aliquam sed,      bibendum eget ante. Morbi quis est scelerisque, cursus metus pharetra, dictum      sapien. Phasellus eleifend hendrerit sem vehicula rutrum. Aliquam interdum   dolor nibh, ac interdum purus cursus sit amet. Maecenas auctor nulla non lorem       consectetur, eget varius eros auctor. Proin sagittis at orci quis euismod.      Quisque vitae hendrerit urna. Quisque lectus sapien, lacinia ut rhoncus in,       tristique et magna. Maecenas interdum blandit dignissim.</p>
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slide active">
+                    <img src="img/slide1.png" alt="Banner 1" class="slide-img">
+                    <div class="text-box-bottom">
+                        <h3>Jasa Terbaik Kami</h3>
+                        <p>Kami memberikan solusi digital terbaik untuk menunjang performa bisnis dan usaha Anda.</p>
+                    </div>
+                </div>
+            
+                <div class="slide">
+                    <img src="img/slide2.png" alt="Banner 2" class="slide-img">
+                    <div class="text-box-bottom">
+                        <h3>Hubungi Kontak Kami</h3>
+                        <p>Tim kami siap melayani kebutuhan Anda kapan saja dengan pelayanan fast-response.</p>
+                    </div>
+                </div>
+            
+                <div class="slide">
+                    <img src="img/slide3.png" alt="Banner 3" class="slide-img">
+                    <div class="text-box-bottom">
+                        <h3>Tentang Perusahaan</h3>
+                        <p>Berpengalaman lebih dari 5 tahun dalam mengelola aset digital klien di seluruh Indonesia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="business-leads-section">
+            <h2 class="business-leads-title">Cocok untuk bisnis yang butuh leads</h2>
+            <p class="business-leads-subtitle">Dari klinik sampai kontraktor — kalau bisnismu butuh calon klien, website ini buat kamu.</p>
+            
+            <div class="badge-container">
+                <div class="lead-badge"><span>🏥</span> Klinik & kesehatan</div>
+                <div class="lead-badge"><span>🔧</span> Bengkel & otomotif</div>
+                <div class="lead-badge"><span>💇‍♀️</span> Salon & spa</div>
+                <div class="lead-badge"><span>🍽️</span> Restoran & F&B</div>
+                <div class="lead-badge"><span>🏗️</span> Properti & kontraktor</div>
+                <div class="lead-badge"><span>🎓</span> Kursus & lembaga</div>
+                <div class="lead-badge"><span>💼</span> Konsultan & jasa profesional</div>
+            </div>
+        </section>
+
+        <p class="desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra ex eu nisi tincidunt bibendum. Vivamus quis lectus tellus. Suspendisse at mi tristique, eleifend odio sed, facilisis felis. Maecenas sollicitudin sapien ante, et accumsan arcu interdum eu. Donec feugiat feugiat nisi non maximus. Nulla volutpat facilisis posuere. Ut convallis interdum diam interdum imperdiet. Maecenas sit amet aliquet arcu.</p>
+        <br>
+        <p class="desc-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra ex eu nisi tincidunt bibendum. Vivamus quis lectus tellus. Suspendisse at mi tristique, eleifend odio sed, facilisis felis. Maecenas sollicitudin sapien ante, et accumsan arcu interdum eu. Donec feugiat feugiat nisi non maximus. Nulla volutpat facilisis posuere. Ut convallis interdum diam interdum imperdiet. Maecenas sit amet aliquet arcu.</p>
+        <br>
+        <p class="desc-text">Nulla sagittis arcu magna, vel malesuada nunc suscipit sed. Nam aliquam dui vitae tellus luctus, feugiat vehicula neque imperdiet. Suspendisse sagittis et est id pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur faucibus, nisi ac mollis fringilla, tortor neque ultrices tortor, vitae aliquet diam turpis vitae enim. Quisque magna diam, interdum id molestie vitae, efficitur in metus. Nam feugiat tidur nisl, fermentum hendrerit leo facilisis ac. Cras gravida viverra dolor, ut sagittis lacus volutpat eu. Morbi varius iaculis euismod. Sed scelerisque placerat nisl in condimentum. Morbi et tortor et lacus tempor tempor. Nulla ultricies aliquam erat ac blandit. Nulla facilisi. Fusce quis neque a dolor pretium viverra in a nulla. Etiam viverra, nunc sit amet consequat vehicula, augue nisl fermentum nulla, non convallis urna quam non nulla. In sed interdum eros.</p>
+        <br>
+
+        <section class="pricing-section">
+            <div class="promo-badge">🔥 Promo Juli</div>
+            <h2 class="pricing-title">Paket Jasa Pembuatan Website<br>Company Profile</h2>
+            <p class="pricing-subtitle">Harga spesial promo Juli (periode 1 tahun) — slot terbatas.</p>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="card-header-title">Paket 1 · Landing Page</div>
+                    <div class="card-header-sub">1 Halaman · domain.com</div>
+                    <div class="old-price">Rp 1.301.800</div>
+                    <div class="current-price">Rp 953.930</div>
+                    <div class="discount-badge">Hemat 27%</div>
+                    <ul class="features-list">
+                        <li>✔️ Domain .com + hosting 1 thn</li>
+                        <li>✔️ 1 email bisnis</li>
+                        <li>✔️ Web 1 halaman</li>
+                        <li>✔️ Tracking GA4/GTM</li>
+                        <li>✔️ Revisi 1x</li>
+                        <li>✔️ GRATIS 12x editing/tahun</li>
+                        <li class="highlight-text">⚡ Selesai 4 hari kerja</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Ambil Paket Ini</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="featured-tag">★ Paling Laris</div>
+                    <div class="card-header-title">Paket 2 · Website 5 Halaman</div>
+                    <div class="card-header-sub">Company Profile · domain.com</div>
+                    <div class="old-price">Rp 5.325.750</div>
+                    <div class="current-price">Rp 1.565.900</div>
+                    <div class="discount-badge">Hemat 71%</div>
+                    <ul class="features-list">
+                        <li>✔️ Domain .com + hosting 1 thn</li>
+                        <li>✔️ 1 email bisnis</li>
+                        <li>✔️ Web 5 halaman (company profile)</li>
+                        <li>✔️ Tracking GA4/GTM</li>
+                        <li>✔️ Revisi 1x</li>
+                        <li>✔️ GRATIS 12x editing/tahun</li>
+                        <li class="highlight-text">⚡ Selesai 7 hari kerja</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Ambil Paket Ini</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="card-header-title">Paket 3 · Website 5 Halaman</div>
+                    <div class="card-header-sub">Company Profile · domain.co.id</div>
+                    <div class="old-price">Rp 6.001.750</div>
+                    <div class="current-price">Rp 1.865.900</div>
+                    <div class="discount-badge">Hemat 69%</div>
+                    <ul class="features-list">
+                        <li>✔️ Domain .co.id (badan usaha berbadan hukum — paling kredibel)</li>
+                        <li>✔️ Hosting 1 thn + 1 email bisnis</li>
+                        <li>✔️ Web 5 halaman (company profile)</li>
+                        <li>✔️ Tracking GA4/GTM</li>
+                        <li>✔️ Revisi 1x · GRATIS 12x editing/tahun</li>
+                        <li class="highlight-text">⚡ Selesai 7 hari kerja</li>
+                    </ul>
+                    <a href="#" class="pricing-btn">Ambil Paket Ini</a>
+                </div>
+            </div>
+
+            <p class="pricing-note">Semua harga periode 1 tahun, all-in (domain + hosting + email + tracking + garansi anti-hack). Tahun ke-2 cukup perpanjang domain & hosting.</p>
+        </section>
+
+        <p class="desc-text">Aenean at dictum erat, posuere consequat mauris. Morbi mattis, libero sit amet tincidunt laoreet, arcu dui efficitur odio, sed rhoncus erat urna vel augue. Nullam id felis pulvinar, aliquam elit vitae, hendrerit augue. Nullam rhoncus mi quis viverra posuere. Proin volutpat magna orci, pretium convallis orci tincidunt sit amet. Vivamus auctor consectetur risus, eu pharetra nisi. Praesent tortor augue, convallis in commodo sit amet, condimentum sit amet massa. Vestibulum venenatis lacinia urna, sit amet molestie magna consequat nec. Nullam interdum suscipit enim eget volutpat. Phasellus sit amet tidur justo. Phasellus egestas, est at venenatis accumsan, nibh odio interdum diam, quis ornare dolor nunc sed velit. In non tortor a elit ullamcorper sagittis sit amet et urna. Vivamus molestie pellentesque nunc, quis vulputate velit accumsan quis. Nunc non pharetra velit.</p>
+        <br>
+        <p class="desc-text">Aliquam sapien odio, posuere nec viverra sit amet, congue ac velit. Cras vehicula tincidunt arcu, vitae tempor sapien tempus id. Phasellus rutrum porttitor tidur, eget egestas enim lacinia sed. Proin tristique felis a rhoncus euismod. Praesent pretium turpis ut finibus varius. Integer lacinia urna a odio gravida aliquam. Suspendisse convallis ac massa in sodales. Praesent lacinia molestie purus eget finibus. Duis vehicula dignissim leo, bibendum semper sapien lacinia nec. Donec fermentum tempor enim, nec efficitur magna tidur lobortis. Pellentesque a posuere velit, at laoreet magna. Donec ut turpis ac libero tidur elementum at vitae arcu.</p>
+        <br>
+        <p class="desc-text">Etiam ultricies euismod tellus, nec rhoncus dui egestas in. Sed ligula velit, posuere sit amet viverra sit amet, volutpat et arcu. Donec bibendum sapien sit amet nunc placerat interdum. Aenean ex mauris, iaculis eget aliquam sed, bibendum eget ante. Morbi quis est scelerisque, cursus metus pharetra, dictum tidur. Phasellus eleifend hendrerit sem vehicula rutrum. Aliquam interdum dolor nibh, ac interdum purus cursus sit amet. Maecenas auctor nulla non lorem tidur, eget varius eros auctor. Proin sagittis at orci quis euismod. Quisque vitae hendrerit urna. Quisque lectus sapien, lacinia ut rhoncus in, tristique et magna. Maecenas interdum blandit dignissim.</p>
+        
+        <section class="leads-section">
+            <h2 class="leads-title">Punya website tapi sepi leads?</h2>
+            <p class="leads-subtitle">Banyak website perusahaan berhenti jadi "pajangan". Ini 4 penyebab paling sering kami temukan.</p>
+
+            <div class="cards-grid">
+                <div class="lead-card">
+                    <div class="card-number">1</div>
+                    <h3>Cuma "pajangan"</h3>
+                    <p>Website ada, tapi nggak ada yang menghubungi kamu.</p>
+                </div>
+
+                <div class="lead-card">
+                    <div class="card-number">2</div>
+                    <h3>Nggak muncul di Google</h3>
+                    <p>Calon klien nyari jasa kamu, tapi yang ketemu malah kompetitor.</p>
+                </div>
+
+                <div class="lead-card">
+                    <div class="card-number">3</div>
+                    <h3>Nggak ada tracking</h3>
+                    <p>Nggak tahu berapa orang yang lihat & klik. Hasilnya gelap.</p>
+                </div>
+            
+                <div class="lead-card">
+                    <div class="card-number">4</div>
+                    <h3>Kalah meyakinkan</h3>
+                    <p>Kompetitor yang webnya rapi tampil lebih kredibel di mata calon klien.</p>
+                </div>
+            </div>
+        </section>
     </div>
-
-
 
     <footer>
         <div class="footer-container">
@@ -70,11 +633,10 @@
             <div class="footer-box">
                 <h3>Ikuti Kami</h3>
                 <div class="footer-socials">
-                    <a href="#" class="social-icon instagram"><img src="img/instagram.png" width="20"></a>
-                    <a href="#" class="social-icon facebook"><img src="img/facebook.png" width="20"></a>
-                    <a href="#" class="social-icon youtube"><img src="img/youtube.png" width="20"></a>
+                    <a href="#" class="social-icon instagram"><img src="img/instagram.png" width="20" alt="Instagram"></a>
+                    <a href="#" class="social-icon facebook"><img src="img/facebook.png" width="20" alt="Facebook"></a>
+                    <a href="#" class="social-icon youtube"><img src="img/youtube.png" width="20" alt="Youtube"></a>
                 </div>
-
             </div>
         </div>
 
@@ -83,5 +645,18 @@
         </div>
     </footer>
 
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        const slideInterval = 4000;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, slideInterval);
+    </script>
 </body>
 </html>
