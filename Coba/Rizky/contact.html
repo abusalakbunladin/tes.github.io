@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>CONTACT US</title>
+    </head>
+    <body>
+        <header class="navbar">
+            <div class="brand">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="img/logo_rpl.png" alt="Logo Jasa" class="brand-img">
+                    <h1 class="brand-title">Jasa</h1>
+                </div>
+            </div>   
+            
+            <nav class="nav-menu">
+                <div class="nav-menu-container">
+                    <a href="#" class="home-logo" aria-label="Homepage">
+                        <div class="house-roof"></div>
+                        <div class="house-body"></div>
+                    </a>
+                    <a href="#jasa" class="nav-link">Jasa</a>
+                    <a href="contact.html" class="nav-link">Kontak</a>
+                    <a href="tentang_kami.html" class="nav-link">Tentang Kami</a>
+                </div>
+            </nav>
+        </header>
+
+        <style>
+            .tes {
+                width: 200px;
+                height: 200px;
+                background-color: #000000;
+                margin: auto;
+                margin-top: 30px;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .tes-dua {
+                width: 190px;
+                height: 190px;
+                background-color: #00ff2a;
+                margin: auto;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .tes-hollow {
+                width: 110px;
+                height: 110px;
+                background-color: #ffffff;
+
+                mask: linear-gradient(#000 0 0) exclude
+                      linear-gradient(#000 0 0) content-box;
+
+                box-sizing: border-box;
+                border-radius: 3px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hollow {
+                width: 120px;
+                height: 120px;
+                background-color: #000000;
+
+                mask: linear-gradient(#000 0 0) exclude
+                      linear-gradient(#000 0 0) content-box;
+                
+                box-sizing: border-box;
+                border-radius: 5px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .tes-tiga {
+                width: 50px;
+                height: 50px;
+                background-color: #000000;
+                border-radius: 4px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .tes-empat {
+                width: 40px;
+                height: 40px;
+                background-color: #ffffff;
+                border-radius: 3;
+            }
+
+            .map-outer {
+                width: 800px;
+                height: 450px;
+                background-color: #adc5f1;
+                margin: auto;
+                margin-top: 40px;
+
+                border-radius: 10px;
+                outline: #3F72AF;
+                outline-style: solid;
+                outline-width: 5px;
+
+                display: flex;
+            }
+
+            .map-media {
+                overflow: hidden;
+                background: none!important;
+
+                border-radius: 10px;
+                border-style: solid;
+                border-color: #3F72AF;
+            }
+
+            .map-placement {
+                margin: 25px 0 auto 25px;
+            }
+
+            .title-deco {
+                font-weight: bold;
+                color: #01132b;
+                margin-bottom: 10px;
+
+                border-bottom:  4px solid;
+
+                border-image: linear-gradient(to right, #0b4899, #abcffa) 1;
+
+                position: relative;
+                display: inline-block;
+                width: 80%;
+                padding: 8px;
+            }
+
+            .title-placement {
+                width: 800px;
+                height: 40px;
+                margin: auto auto 40px auto;
+            }
+
+            .font-style {
+                font-weight: bold;
+                color: #3F72AF;
+            }
+
+            .loc-info {
+                width: 370px;
+                height: auto;
+
+            }
+
+            .loc-info-placement {
+                margin: 20px 0 0 auto;
+
+                display: flex;
+                justify-content: right;
+            }
+
+            .loc-info-content {
+                margin-bottom: 15px;
+
+                display: flex;
+                justify-content: left;
+            }
+
+            .map-loc-info-container {
+                width: 345px;
+                height: 350px;   
+                background-color: #3F72AF;
+                
+                border-radius: 10px;
+
+                display: flex;
+                justify-content: left;
+            }
+
+            .map-loc-info-content {
+                margin: 10px 0 0 20px;
+            }
+
+            .icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .l-i-deco {
+                margin-bottom: 10px;
+                
+                border-bottom: 3px solid #abcffa;
+
+                position: relative;
+                display: inline-block;
+                width: 94%;
+            }
+        </style>
+
+        <div>
+            <div class="title-placement">
+                <h2 class="title-deco">OFFICE LOCATION</h2>
+            </div>
+
+            <div class="map-outer">
+                <div class="map-placement">
+                    <iframe class="map-media"
+                        src="https://www.google.com/maps?q=HamHamPangPang&output=embed"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+
+                        width="370px"
+                        height="350px"
+                        >
+                    </iframe> 
+                    
+                    <div>
+                        <h3 class="font-style" style="display: flex; justify-content: center; margin-top: 18px; font-size: 25px;">GOOGLE MAPS</h3>
+                    </div>
+                </div>
+
+                <div class="loc-info-placement">
+                    <div class="loc-info">
+                        <div>
+                            <h3 class="loc-info-content font-style" style="font-size: 30px;">OFFICE INFORMATION</h3>
+
+                            <div class="map-loc-info-container">
+                                <div class="map-loc-info-content" style="color: #01132b;">
+
+                                    <div class="l-i-deco">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <img src="img/map-pointer.png" alt="lokasi" class="icon">
+                                            <h3>ADDRESS</h3>
+                                        </div>
+                                        <p style="margin-top: 5px; margin-left: 15px; margin-bottom: 15px;">South Korea, Gyeonggi-do, Suwon-si, Beopjo-ro, 25 에스케이뷰레이크타워 1층</p>
+                                    </div>    
+
+                                    <div class="l-i-deco">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <img src="img/email-envelope.png" alt="lokasi" class="icon">
+                                            <h3>E-MAIL</h3>
+                                        </div>
+                                        <p style="margin-top: 5px; margin-left: 15px; margin-bottom: 15px;">jasa_abalan@email.com</p>
+                                    </div>
+
+                                    <div style="margin-bottom: 10px;">
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <img src="img/phone-call.png" alt="lokasi" class="icon">
+                                            <h3>PHONE CALL</h3>
+                                        </div>
+                                        <div style="margin-top: 5px; margin-left: 15px; margin-bottom: 15px;">
+                                            <ul>
+                                                <h4>OFFICE</h4>
+                                                <li style="margin-left: 30px;">+62-21-25567099</li>
+                                                <li style="margin-left: 30px; margin-bottom: 10px;">+62-21-3486620</li>
+
+                                                <h4>SUPERVISOR</h4>
+                                                <li style="margin-left: 30px; margin-bottom: 10px;">+62 895-3471-47286</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="tes">
+            <div class="tes-dua">
+                <div class="hollow">
+                    <div class="tes-hollow">
+                        <div class="tes-tiga">
+                            <div class="tes-empat"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer id="kontak">
+            <div class="footer-container">
+                <div class="footer-box">
+                    <h3>Jasa Company</h3>
+                    <p class="footer-desc">
+                        Kami menyediakan layanan profesional terbaik untuk membantu menyediakan platform digital dan website bisnis berkualitas tinggi, cepat, aman, serta konversif.
+                    </p>
+                </div>
+
+                <div class="footer-box">
+                    <h3>Bantuan</h3>
+                    <ul class="footer-links">
+                        <li><a href="FAQ.html"><b>FAQ</b></a></li>
+                        <li><a href="https://wa.me/6283831713537">Customer Service: +62 838-3171-3537</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-box">
+                    <h3>Ikuti Kami</h3>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/cwk.normal" class="social-icon instagram"><img src="img/instagram.png" width="20" alt="Instagram"></a>
+                        <a href="https://www.facebook.com/gatra.fp" class="social-icon facebook"><img src="img/facebook.png" width="20" alt="Facebook"></a>
+                        <a href="https://www.youtube.com/@gatraaja35" class="social-icon youtube"><img src="img/youtube.png" width="20" alt="Youtube"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jasa Company. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </footer>
+
+
+    </body>
+</html>
